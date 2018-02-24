@@ -22,3 +22,12 @@ class AppTest(TestCase):
         with patch('builtins.print') as mocked_print:
             app.print_blogs()
             mocked_print.assert_called_with('- Test by Test Author (0 posts)')
+
+    def test_ask_create_blog(self):
+        pass
+
+    def test_ask_read_blog(self):
+        pass
+
+    def test_sk_create_post(self):
+        pass
