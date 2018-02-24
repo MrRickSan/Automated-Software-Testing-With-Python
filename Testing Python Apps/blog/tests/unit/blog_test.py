@@ -13,18 +13,18 @@ class BlogTest(TestCase):
         #self.assertEqual(0, len(b.posts))
 
     def test_repr(self):
-        pass
+        b = Blog('Title', 'Test Author')
+        b2 = Blog('My Day', 'Rolf')
 
-    def test_create_post(self):
-        b = Blog.create_post('Title', 'Content')
-        expected = {'title': 'Title', 'content': 'Content',}
+        self.assertEqual(b.__repr__(), ('{} by {} (0 posts)'.format(b.title, b.author)))
+        self.assertEqual(b2.__repr__(), ('{} by {} (0 posts)'.format(b2.title, b2.author)))
 
-        self.assertDictEqual(expected, b.json())
+    def test_repr_multiple_posts(self):
+        b = Blog('Title', 'Test Author')
+        b.posts = ['test']
 
-    def test_json(self):
-        b = Blog('Test', 'Test Author')
-        b.create_post('Title', 'Content')
+        b2 = Blog('My Day', 'Rolf')
+        b2.posts = ['test', 'another']
 
-        expected = {'title': 'Test', 'author': 'Test Author', 'posts': '[ {"title": Title, "content": "Content",} ]'}
-
-        self.assertDictEqual(expected, b.json())
+        self.assertEqual(b.__repr__(), ('{} by {} (1 post)'.format(b.title, b.author)))
+        self.assertEqual(b2.__repr__(), ('{} by {} (2 posts)'.format(b2.title, b2.author)))
