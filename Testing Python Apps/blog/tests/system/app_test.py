@@ -24,7 +24,12 @@ class AppTest(TestCase):
             mocked_print.assert_called_with('- Test by Test Author (0 posts)')
 
     def test_ask_create_blog(self):
-        pass
+        with patch('builtins.input') as mocked_input:
+            # return the first value('Test') on the first time the function is called, then the second one('Test Author') and so on.
+            mocked_input.side_effect = ('Test', 'Test Author')
+            app.ask_create_blog()
+
+            self.assertIsNotNone(app.blogs.get('Test'))
 
     def test_ask_read_blog(self):
         pass
