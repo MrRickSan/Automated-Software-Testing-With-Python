@@ -11,11 +11,6 @@ POST_TEMPLATE = '''
 blogs = dict() #blog_name : Blog object
 
 def menu():
-    #Show the user available blogs
-    #Let the user make a choice
-    #Do something with that choice
-    #Eventually exit
-
     print_blogs()
     selection = input(MENU_PROMPT)
     while selection != 'q':
@@ -55,4 +50,8 @@ def print_post(post):
 
 
 def ask_create_post():
-    pass
+    blog_name = input('Enter the blog title you want to write a post in: ')
+    title = input('Enter your post title: ')
+    content = input('Enter your post content')
+
+    blogs[blog_name].create_post(title, content)
