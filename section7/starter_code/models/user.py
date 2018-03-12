@@ -9,6 +9,10 @@ class UserModel(db.Model):
     password = db.Column(db.String())
 
     def __init__(self, username, password):
+        self.username = username
+        self.password = password
+
+    def save_to_db(self):
         db.session.add(self)
         db.session.commit()
 
@@ -19,4 +23,3 @@ class UserModel(db.Model):
     @classmethod
     def find_by_id(cls, id):
         return cls.query.filter_by(id=id).first()
-    
